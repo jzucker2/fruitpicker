@@ -3,8 +3,8 @@ Dockerfile
 .gitignore
 .dockerignore
 
-qnap_exporter/app/app.db
-qnap_exporter/tests/
+fruitpicker/app/app.db
+fruitpicker/tests/
 
 /node_modules
 *.DS_Store
