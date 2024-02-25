@@ -14,13 +14,13 @@ class Labels(Enum):
 
 
 class Metrics(object):
-    SEND_MAGIC_PACKET_TIME = Summary(
-        'fruitpicker_wal_send_magic_pack_time',
-        'Time spent to send WAL magic packet')
+    UNDER_VOLTAGE_CHECK_TIME = Summary(
+        'fruitpicker_under_voltage_check_time',
+        'Time spent to check if pi is under voltage')
 
-    SEND_MAGIC_PACKET_EXCEPTIONS = Counter(
-        'fruitpicker_wal_send_magic_pack_exceptions',
-        'Exceptions while attempting to send WAL magic packet')
+    UNDER_VOLTAGE_CHECK_EXCEPTIONS = Counter(
+        'fruitpicker_under_voltage_check_exceptions',
+        'Exceptions while attempting to check if pi is under voltage')
 
 
 # https://github.com/rycus86/prometheus_flask_exporter#app-factory-pattern

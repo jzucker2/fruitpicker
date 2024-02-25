@@ -40,4 +40,4 @@ updates:
       - dependencies
     allow:
       # allow updates for specific clients
-      - dependency-name: "wakeonlan"
+      - dependency-name: "rpi-bad-power"
