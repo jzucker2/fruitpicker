@@ -6,6 +6,6 @@ log = app.logger
 
 
 @app.route('/api/v1/check-under-voltage')
-async def check_under_voltage():
+def check_under_voltage():
     router = UnderVoltageRouter()
-    return await router.check_under_voltage_response()
+    return router.check_under_voltage_response()
