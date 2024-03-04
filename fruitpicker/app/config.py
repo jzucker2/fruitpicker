@@ -78,6 +78,21 @@ class base_config(object):
     APP_DIR = os.path.dirname(__file__)
     MIGRATION_DIRECTORY = os.path.join(APP_DIR, "migrations")
 
+    # Flask-APScheduler
+    SCHEDULER_API_ENABLED = True
+
+    # metrics check configuration
+    DEFAULT_METRICS_INTERVAL_SECONDS = 20
+    METRICS_INTERVAL_SECONDS = int(os.getenv(
+        "METRICS_INTERVAL_SECONDS",
+        default=DEFAULT_METRICS_INTERVAL_SECONDS))
+
+    # to turn off, supply `0` but by default will regularly ping RPi power
+    DEFAULT_SHOULD_SCHEDULE_RPI_POWER_METRICS_UPDATES = '1'
+    SHOULD_SCHEDULE_RPI_POWER_METRICS_UPDATES = os.environ.get(
+        'SHOULD_SCHEDULE_RPI_POWER_METRICS_UPDATES',
+        DEFAULT_SHOULD_SCHEDULE_RPI_POWER_METRICS_UPDATES)
+
 
 class dev_config(base_config):
     """Development configuration options."""
