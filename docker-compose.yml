@@ -14,5 +14,7 @@ services:
     ports:
       - "5566:5566"
       - "9266:9266"
+    volumes:
+      - /sys:/sys:ro
     stdin_open: true
     tty: true
