@@ -2,7 +2,7 @@
 from flask import Flask
 from . import config
 from . import database
-from .extensions import migrate, cors
+from .extensions import migrate, cors, scheduler
 from .metrics import metrics
 
 
@@ -18,6 +18,14 @@ def create_app(config=config.base_config):
         app.logger.setLevel(log_level)
         app.logger.debug(f'!!!!!!!!!!! Set log_level: {log_level}')
 
+        # Check to possibly include our Tasks
+        from .tasks.rpi_power_pinger import RPiPowerPinger
+        if RPiPowerPinger.should_schedule_rpi_power_metrics_updates():
+            from .tasks import rpi_power  # noqa: F401
+        else:
+            s_m = 'Skipping scheduling of RPi Power metrics updates'
+            app.logger.warning(s_m)
+
         register_extensions(app)
 
         @app.route("/")
@@ -27,7 +35,9 @@ def create_app(config=config.base_config):
 
         # Include our Routes
         from .routes import utils  # noqa: F401
+        from .routes import debug  # noqa: F401
         from .routes import under_voltage  # noqa: F401
+        from .routes import collector  # noqa: F401
 
         # after routes, register metrics
         register_metrics(app)
@@ -50,6 +60,9 @@ def register_extensions(app):
                         f'{migration_directory}'
     app.logger.debug(migration_message)
     migrate.init_app(app, db=db, directory=migration_directory)
+    # scheduler
+    scheduler.init_app(app)
+    scheduler.start()
     # TODO: do we need the below??
     # db.create_all()
 

@@ -41,3 +41,4 @@ updates:
     allow:
       # allow updates for specific clients
       - dependency-name: "rpi-bad-power"
+      - dependency-name: "Flask-APScheduler"

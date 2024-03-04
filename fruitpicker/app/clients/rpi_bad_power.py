@@ -1,4 +1,6 @@
 from flask import current_app as app
+from ..common.voltage_events import VoltageEvents
+from ..metrics import Metrics
 from rpi_bad_power import new_under_voltage
 
 
@@ -18,11 +20,26 @@ class RPiBadPower(object):
         return cls()
 
     @classmethod
-    def check_under_voltage(cls):
-        under_voltage = new_under_voltage()
-        if under_voltage is None:
+    def get_event_for_result(cls, under_voltage_result):
+        if under_voltage_result is None:
             log.info("System not supported.")
-        elif under_voltage.get():
+            return VoltageEvents.SYSTEM_NOT_SUPPORTED
+        elif under_voltage_result.get():
             log.info("Under voltage detected.")
+            return VoltageEvents.UNDER_VOLTAGE_DETECTED
         else:
             log.info("Voltage is normal.")
+            return VoltageEvents.NORMAL
+
+    @classmethod
+    def _inc_voltage_event(cls, event):
+        Metrics.UNDER_VOLTAGE_EVENT_CLIENT_COUNTER.labels(
+            event=event.value,
+        ).inc()
+
+    @classmethod
+    def check_under_voltage(cls):
+        under_voltage = new_under_voltage()
+        event = cls.get_event_for_result(under_voltage)
+        cls._inc_voltage_event(event)
+        return event
