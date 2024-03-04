@@ -47,18 +47,6 @@ def create_app(config=config.base_config):
 def register_extensions(app):
     """Register extensions with the Flask application."""
     cors(app)
-    # db_uri = app.config.get('SQLALCHEMY_DATABASE_URI')
-    # app.logger.info(f'registering with '
-    #                 f'SQLALCHEMY_DATABASE_URI: {db_uri}')
-
-    # db = database.init_app(app)
-    # need to import below for alembic migrations
-    # from .models.admin import Admin  # noqa: F401
-    # migration_directory = app.config.get('MIGRATION_DIRECTORY')
-    # migration_message = f'Using migration_directory: ' \
-    #                     f'{migration_directory}'
-    # app.logger.debug(migration_message)
-    # migrate.init_app(app, db=db, directory=migration_directory)
     # scheduler
     scheduler.init_app(app)
     scheduler.start()
