@@ -26,8 +26,9 @@ class ExporterRouter(Router):
             p_m = 'handle simple exporter route'
             log.debug(p_m)
             final_response = self.base_response('simple')
-            # self.exporter.fetch_all_domains_stats()
-            log.debug(f'self.exporter: {self.exporter}')
+            result = self.exporter.update_rpi_power_metrics()
+            r_m = f'self.exporter: {self.exporter} got result: {result}'
+            log.debug(r_m)
             return final_response
 
     @Metrics.EXPORTER_METRICS_UPDATE_ROUTE_TIME.time()
@@ -36,6 +37,7 @@ class ExporterRouter(Router):
             p_m = 'handle exporter metrics update route'
             log.debug(p_m)
             final_response = self.base_response('metrics_update')
+            result = self.exporter.update_rpi_power_metrics()
             # log.debug('first fetch the domains stats')
             # self.exporter.fetch_all_domains_stats()
             # log.debug('now that we fetched the latest stats, update metrics')

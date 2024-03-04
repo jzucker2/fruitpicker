@@ -30,3 +30,6 @@ class Exporter(object):
 
     def __repr__(self):
         return f'Exporter => blah: {self._last_power_value}'
+
+    def update_rpi_power_metrics(self):
+        return self.rpi_power_client.check_under_voltage()
