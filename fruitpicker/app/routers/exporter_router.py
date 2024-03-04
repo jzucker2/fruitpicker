@@ -38,6 +38,8 @@ class ExporterRouter(Router):
             log.debug(p_m)
             final_response = self.base_response('metrics_update')
             result = self.exporter.update_rpi_power_metrics()
+            r_m = f'self.exporter: {self.exporter} got result: {result}'
+            log.debug(r_m)
             # log.debug('first fetch the domains stats')
             # self.exporter.fetch_all_domains_stats()
             # log.debug('now that we fetched the latest stats, update metrics')
