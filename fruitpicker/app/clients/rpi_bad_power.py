@@ -33,7 +33,7 @@ class RPiBadPower(object):
 
     @classmethod
     def _inc_voltage_event(cls, event):
-        Metrics.UNDER_VOLTAGE_EVENT_COUNTER.labels(
+        Metrics.UNDER_VOLTAGE_EVENT_CLIENT_COUNTER.labels(
             event=event.value,
         ).inc()
 
@@ -42,12 +42,14 @@ class RPiBadPower(object):
         under_voltage = new_under_voltage()
         event = cls.get_event_for_result(under_voltage)
         cls._inc_voltage_event(event)
-        if event == VoltageEvents.SYSTEM_NOT_SUPPORTED:
-            Metrics.SYSTEM_SUPPORTED_VALUE.set(0)
-            # TODO: would be cool to do something else here
-            return None
-        else:
-            Metrics.SYSTEM_SUPPORTED_VALUE.set(1)
-            final_value = event.under_voltage_value
-            Metrics.UNDER_VOLTAGE_VALUE.set(final_value)
-            return final_value
+        return event
+        # cls._inc_voltage_event(event)
+        # if event == VoltageEvents.SYSTEM_NOT_SUPPORTED:
+        #     Metrics.SYSTEM_SUPPORTED_VALUE.set(0)
+        #     # TODO: would be cool to do something else here
+        #     return None
+        # else:
+        #     Metrics.SYSTEM_SUPPORTED_VALUE.set(1)
+        #     final_value = event.under_voltage_value
+        #     Metrics.UNDER_VOLTAGE_VALUE.set(final_value)
+        #     return final_value

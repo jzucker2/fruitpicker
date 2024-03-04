@@ -1,6 +1,6 @@
 from flask import current_app as app
 from ..extensions import scheduler
-from ..routers.exporter_router import ExporterRouter
+from ..routers.collector_router import CollectorRouter
 from .rpi_power_pinger import RPiPowerPinger
 
 
@@ -23,7 +23,7 @@ def perform_rpi_power_metrics_update():
     log.info("running rpi_power_metrics_update!")
 
     with scheduler.app.app_context():
-        router = ExporterRouter()
-        response = router.handle_exporter_metrics_update_route_response()
+        router = CollectorRouter()
+        response = router.handle_collector_metrics_update_route_response()
         r_m = f'scheduled rpi power metrics update got response: {response}'
         log.info(r_m)

@@ -37,21 +37,21 @@ class Metrics(object):
         'fruitpicker_under_voltage_check_exceptions',
         'Exceptions while attempting to check if pi is under voltage')
 
-    SIMPLE_EXPORTER_ROUTE_TIME = Summary(
-        'fruitpicker_simple_exporter_route_time',
-        'Time spent to handle simple exporter route request')
+    SIMPLE_COLLECTOR_ROUTE_TIME = Summary(
+        'fruitpicker_simple_collector_route_time',
+        'Time spent to handle simple collector route request')
 
     SIMPLE_EXPORTER_ROUTE_EXCEPTIONS = Counter(
-        'fruitpicker_simple_exporter_route_exceptions',
-        'Exceptions while attempting to handle simple exporter route request')
+        'fruitpicker_simple_collector_route_exceptions',
+        'Exceptions while attempting to handle simple collector route request')
 
-    EXPORTER_METRICS_UPDATE_ROUTE_TIME = Summary(
-        'fruitpicker_exporter_metrics_update_route_time',
-        'Time spent to handle exporter metrics update route request')
+    COLLECTOR_METRICS_UPDATE_ROUTE_TIME = Summary(
+        'fruitpicker_collector_metrics_update_route_time',
+        'Time spent to handle collector metrics update route request')
 
-    EXPORTER_METRICS_UPDATE_ROUTE_EXCEPTIONS = Counter(
-        'fruitpicker_exporter_metrics_update_route_exceptions',
-        'Exceptions while attempting exporter metrics update route request')
+    COLLECTOR_METRICS_UPDATE_ROUTE_EXCEPTIONS = Counter(
+        'fruitpicker_collector_metrics_update_route_exceptions',
+        'Exceptions while attempting collector metrics update route request')
 
     SYSTEM_SUPPORTED_VALUE = Gauge(
         'fruitpicker_system_supported_value',
@@ -63,9 +63,15 @@ class Metrics(object):
         'The under voltage value is 1 if detecting bad power'
     )
 
-    UNDER_VOLTAGE_EVENT_COUNTER = Counter(
-        'fruitpicker_under_voltage_event_count',
-        'The count of voltage related events',
+    UNDER_VOLTAGE_EVENT_CLIENT_COUNTER = Counter(
+        'fruitpicker_under_voltage_event_client_count',
+        'The count of voltage related events fetched by client',
+        Labels.voltage_event_labels()
+    )
+
+    UNDER_VOLTAGE_EVENT_COLLECTOR_COUNTER = Counter(
+        'fruitpicker_under_voltage_event_collector_count',
+        'The count of voltage related events processed by collector',
         Labels.voltage_event_labels()
     )
 
