@@ -1,16 +1,12 @@
 from enum import Enum
 from uuid import uuid4
 from datetime import datetime
-from asgiref.sync import sync_to_async
 import logging
 from .version import version
 
 
 class NormalizeIntegerException(Exception):
     pass
-
-
-convert_to_async = sync_to_async
 
 
 def set_up_logging(level=logging.DEBUG):
