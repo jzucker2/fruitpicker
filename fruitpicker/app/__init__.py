@@ -1,7 +1,7 @@
 # based around https://github.com/jzucker2/filmstock
 from flask import Flask
 from . import config
-from .extensions import migrate, cors, scheduler
+from .extensions import cors, scheduler
 from .metrics import metrics
 
 
