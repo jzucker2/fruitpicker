@@ -24,7 +24,7 @@ class UnderVoltageRouter(Router):
     def check_under_voltage_response(self):
         with Metrics.UNDER_VOLTAGE_CHECK_EXCEPTIONS.count_exceptions():
             p_m = 'check for under_voltage'
-            log.info(p_m)
+            log.debug(p_m)
             final_response = self.base_response('check_under_voltage')
             self.rpi_bad_power.check_under_voltage()
             return final_response

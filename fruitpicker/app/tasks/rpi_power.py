@@ -26,4 +26,4 @@ def perform_rpi_power_metrics_update():
         router = CollectorRouter()
         response = router.handle_collector_metrics_update_route_response()
         r_m = f'scheduled rpi power metrics update got response: {response}'
-        log.info(r_m)
+        log.debug(r_m)

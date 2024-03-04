@@ -22,13 +22,13 @@ class RPiBadPower(object):
     @classmethod
     def get_event_for_result(cls, under_voltage_result):
         if under_voltage_result is None:
-            log.info("System not supported.")
+            log.error("System not supported.")
             return VoltageEvents.SYSTEM_NOT_SUPPORTED
         elif under_voltage_result.get():
-            log.info("Under voltage detected.")
+            log.error("Under voltage detected.")
             return VoltageEvents.UNDER_VOLTAGE_DETECTED
         else:
-            log.info("Voltage is normal.")
+            log.debug("Voltage is normal.")
             return VoltageEvents.NORMAL
 
     @classmethod
