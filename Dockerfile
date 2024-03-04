@@ -28,8 +28,5 @@ ENV PROMETHEUS_MULTIPROC_DIR /tmp
 ENV prometheus_multiproc_dir /tmp
 ENV METRICS_PORT 9266
 
-RUN ["sh", "set_up_db.sh"]
-
-FROM app_setup AS run_server
 # can use `run_dev.sh` or `run_prod.sh`
 CMD ["sh", "run_prod.sh"]
