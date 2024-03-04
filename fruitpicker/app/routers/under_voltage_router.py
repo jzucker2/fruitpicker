@@ -18,7 +18,7 @@ class UnderVoltageRouter(Router):
 
     @property
     def service(self):
-        return 'under_voltage'
+        return 'check_under_voltage'
 
     @Metrics.UNDER_VOLTAGE_CHECK_TIME.time()
     def check_under_voltage_response(self):
