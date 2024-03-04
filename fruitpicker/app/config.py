@@ -26,7 +26,7 @@ ENV_FRUITPICKER_HOST = os.getenv(
     default="0.0.0.0")
 ENV_FRUITPICKER_PORT = int(os.getenv(
     "FRUITPICKER_PORT",
-    default=1996))
+    default=5566))
 
 
 class base_config(object):

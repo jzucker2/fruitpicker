@@ -13,5 +13,5 @@ def child_exit(server, worker):
 
 
 # https://docs.gunicorn.org/en/latest/configure.html
-bind = "0.0.0.0:1996"
+bind = "0.0.0.0:5566"
 workers = 2
