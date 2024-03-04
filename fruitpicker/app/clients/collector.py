@@ -8,13 +8,11 @@ from .rpi_bad_power import RPiBadPower
 log = app.logger
 
 
-class ExporterException(Exception):
+class CollectorException(Exception):
     pass
 
 
 class Collector(object):
-    DEFAULT_SYSTEM_HEALTH_VALUE = 'missing'
-
     @classmethod
     def get_client(cls, rpi_power_client=None):
         if not rpi_power_client:
@@ -31,7 +29,7 @@ class Collector(object):
         return global_get_now()
 
     def __repr__(self):
-        return f'Exporter => blah: {self._last_power_value}'
+        return f'Collector => blah: {self._last_power_value}'
 
     @classmethod
     def _inc_voltage_event(cls, event):

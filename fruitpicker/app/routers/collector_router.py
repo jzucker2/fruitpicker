@@ -7,7 +7,7 @@ from .router import Router, RouterException
 log = app.logger
 
 
-class ExporterRouterException(RouterException):
+class CollectorRouterException(RouterException):
     pass
 
 
@@ -40,10 +40,4 @@ class CollectorRouter(Router):
             result = self.collector.update_rpi_power_metrics()
             r_m = f'self.collector: {self.collector} got result: {result}'
             log.debug(r_m)
-            # log.debug('first fetch the domains stats')
-            # self.collector.fetch_all_domains_stats()
-            # log.debug('now that we fetched the latest stats, update metrics')
-            # self.collector.update_all_domains_metrics()
-            # log.debug('done with both stats and metrics')
-            # log.debug(f'self.collector: {self.collector}')
             return final_response

@@ -74,13 +74,6 @@ def max_day(dt, zero_hour=23):
     return dt.replace(hour=zero_hour, minute=59, second=59, microsecond=0)
 
 
-# TODO: this should be the first unit test
-def garmin_activity_from_strava(strava_external_id):
-    original = strava_external_id
-    cleaned_up = original.replace('garmin_push_', '')
-    return cleaned_up
-
-
 def normalize_name(name_or_other, return_other=False):
     if isinstance(name_or_other, Enum):
         return name_or_other.value
